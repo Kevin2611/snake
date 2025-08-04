@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Juego Snake 🐍</title>
   <style>
     body {
@@ -18,16 +18,53 @@
       background-color: #222;
       margin-top: 30px;
       border: 3px solid limegreen;
+      display: none; /* Oculto al inicio */
     }
 
     h1 {
       margin-top: 20px;
       font-size: 2em;
     }
+
+    .welcome {
+      text-align: center;
+      margin-top: 120px;
+      line-height: 2em;
+    }
+
+    .welcome h2 {
+      font-size: 1.6em;
+    }
+
+    .welcome p {
+      font-size: 1.1em;
+      margin: 10px 0 20px;
+    }
+
+    .welcome button {
+      padding: 10px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: limegreen;
+      color: white;
+      cursor: pointer;
+    }
+
+    .welcome button:hover {
+      background-color: green;
+    }
   </style>
 </head>
 <body>
-  <h1>Juego Snake 🐍</h1>
+
+  <!-- Pantalla de bienvenida -->
+  <div class="welcome" id="welcomeScreen">
+    <h2>BIENVENIDA BOBITA 😏</h2>
+    <p>Algo sencillo, juegas ganas o pierdes, pero cada que pierdas me debes un kiss 😎</p>
+    <button onclick="iniciarJuego()">JUGAR</button>
+  </div>
+
   <canvas id="game" width="400" height="400"></canvas>
 
   <script>
@@ -42,6 +79,7 @@
     let dx = 1;
     let dy = 0;
     let score = 0;
+    let gameInterval;
 
     function drawRect(x, y, color) {
       ctx.fillStyle = color;
@@ -51,30 +89,25 @@
     function drawGame() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Dibujar la comida
+      // Comida
       drawRect(food.x, food.y, "red");
 
-      // Mover la serpiente
       const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
-      // Verificar colisiones
+      // Colisión
       if (
         head.x < 0 || head.x >= tileCount ||
         head.y < 0 || head.y >= tileCount ||
         snake.some(segment => segment.x === head.x && segment.y === head.y)
       ) {
+        clearInterval(gameInterval);
         alert("💀 Game Over. Tu puntuación fue: " + score);
-        // Reiniciar juego
-        snake = [{ x: 10, y: 10 }];
-        dx = dy = 0;
-        food = { x: 5, y: 5 };
-        score = 0;
+        reiniciar();
         return;
       }
 
       snake.unshift(head);
 
-      // Comer comida
       if (head.x === food.x && head.y === food.y) {
         score++;
         food = {
@@ -82,10 +115,9 @@
           y: Math.floor(Math.random() * tileCount)
         };
       } else {
-        snake.pop(); // No comer = moverse
+        snake.pop();
       }
 
-      // Dibujar la serpiente
       snake.forEach((segment, i) => {
         drawRect(segment.x, segment.y, i === 0 ? "limegreen" : "green");
       });
@@ -100,10 +132,21 @@
       }
     }
 
-    document.addEventListener("keydown", keyDown);
+    function iniciarJuego() {
+      document.getElementById("welcomeScreen").style.display = "none";
+      canvas.style.display = "block";
+      document.addEventListener("keydown", keyDown);
+      gameInterval = setInterval(drawGame, 100);
+    }
 
-    setInterval(drawGame, 100); // 10 FPS
+    function reiniciar() {
+      snake = [{ x: 10, y: 10 }];
+      dx = 1;
+      dy = 0;
+      score = 0;
+      food = { x: 5, y: 5 };
+      gameInterval = setInterval(drawGame, 100);
+    }
   </script>
 </body>
 </html>
-
