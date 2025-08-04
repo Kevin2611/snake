@@ -6,7 +6,7 @@
   <style>
     body {
       margin: 0;
-background-image: url('https://wallpapers.com/images/hd/snake-game-1024-x-500-background-qd7v32jhjynbbg7a.jpg');
+      background-image: url('https://wallpapers.com/images/hd/snake-game-1024-x-500-background-qd7v32jhjynbbg7a.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -64,22 +64,20 @@ background-image: url('https://wallpapers.com/images/hd/snake-game-1024-x-500-ba
 <body>
 
   <!-- Pantalla de bienvenida -->
-  <h2>BIENVENIDA BONITA 😏</h2>
-<p>Algo sencillo, juegas ganas o pierdes, pero cada que pierdas me debes un kiss😎</p>
-<p style="font-size: 0.95em; color: #ddd; margin-top: 10px;">
-  Usa las flechas ⬆️⬇️⬅️➡️ para moverte<br>
-  Come el cuadrado rojo 🟥 y evita chocarte 💀
-</p>
-
+  <div class="welcome" id="welcomeScreen">
+    <h2>Bienvenida 😏</h2>
+    <p>Si pierdes… me debes un beso</p>
+    <button onclick="iniciarJuego()">JUGAR</button>
+  </div>
 
   <!-- Juego -->
-  <canvas id="game" width="600" height="600"></canvas>
+  <canvas id="game" width="500" height="500"></canvas>
 
   <script>
     const canvas = document.getElementById("game");
     const ctx = canvas.getContext("2d");
 
-    const gridSize = 30;
+    const gridSize = 25;
     const tileCount = canvas.width / gridSize;
 
     let snake = [{ x: 10, y: 10 }];
@@ -158,9 +156,3 @@ background-image: url('https://wallpapers.com/images/hd/snake-game-1024-x-500-ba
   </script>
 </body>
 </html>
-
-
-
-
-
-
