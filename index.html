@@ -204,9 +204,14 @@ document.getElementById("highScore").textContent = highScore;
       food = { x: 5, y: 5 };
       gameInterval = setInterval(drawGame, 100);
     }
+    window.onbeforeunload = function () {
+    localStorage.removeItem("snakeHighScore");
+    localStorage.removeItem("snakeLosses");
+  };
   </script>
 </body>
 </html>
+
 
 
 
