@@ -85,9 +85,9 @@
 
   <div id="scoreBoard" style="display: none; margin-top: 10px; color: #fff; font-size: 1.2em;">
   🟢 Puntaje: <span id="score">0</span> &nbsp;&nbsp;&nbsp;
-  🏆 Récord: <span id="highScore">0</span>
+  🏆 Récord: <span id="highScore">0</span> &nbsp;&nbsp;&nbsp;
+  💔 Derrotas: <span id="losses">0</span>
 </div>
-
 
   <script>
     const canvas = document.getElementById("game");
@@ -111,6 +111,9 @@ document.getElementById("highScore").textContent = highScore;
       ctx.fillRect(x * gridSize, y * gridSize, gridSize - 2, gridSize - 2);
     }
 
+let losses = localStorage.getItem("snakeLosses") || 0;
+document.getElementById("losses").textContent = losses;
+
     function drawGame() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -128,6 +131,9 @@ document.getElementById("highScore").textContent = highScore;
         clearInterval(gameInterval);
         alert("💀 Game Over. Tu puntuación fue: " + score);
         reiniciar();
+        losses++;
+localStorage.setItem("snakeLosses", losses);
+document.getElementById("losses").textContent = losses;
         return;
       }
 
@@ -180,6 +186,8 @@ if (score > highScore) {
       canvas.style.display = "block";
       document.addEventListener("keydown", keyDown);
       gameInterval = setInterval(drawGame, 100);
+      document.getElementById("losses").textContent = losses;
+
 
       document.getElementById("scoreBoard").style.display = "block";
 document.getElementById("score").textContent = "0";
@@ -199,6 +207,7 @@ document.getElementById("highScore").textContent = highScore;
   </script>
 </body>
 </html>
+
 
 
 
