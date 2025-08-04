@@ -64,17 +64,14 @@
 <body>
 
   <!-- Pantalla de bienvenida -->
-  <h2>BIENVENIDA BOBITA 😏</h2>
-<p>Algo sencillo, juegas ganas o pierdes, pero cada que pierdas me debes un kiss😎</p>
-<p style="font-size: 0.95em; color: #ddd; margin-top: 10px;">
-  Usa las flechas ⬆️⬇️⬅️➡️ para moverte<br>
-  Come el cuadrado rojo 🟥 y evita chocarte 💀
-</p>
+  <div class="welcome" id="welcomeScreen">
+    <h2>BIENVENIDA BOBITA 😏</h2>
+    <p>Algo sencillo, juegas ganas o pierdes, pero cada que pierdas me debes un kiss😎</p>
     <button onclick="iniciarJuego()">JUGAR</button>
   </div>
 
   <!-- Juego -->
-  <canvas id="game" width="500" height="500"></canvas>
+  <canvas id="game" width="700" height="700"></canvas>
 
   <script>
     const canvas = document.getElementById("game");
@@ -159,4 +156,3 @@
   </script>
 </body>
 </html>
-
