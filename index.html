@@ -135,8 +135,19 @@
       }
 
       snake.forEach((segment, i) => {
-        drawRect(segment.x, segment.y, i === 0 ? "limegreen" : "green");
-      });
+  const color = i === 0 ? "#7CFC00" : "#006400"; // cabeza y cuerpo
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.roundRect(
+    segment.x * gridSize,
+    segment.y * gridSize,
+    gridSize - 2,
+    gridSize - 2,
+    6 // esquinas redondeadas
+  );
+  ctx.fill();
+});
+
     }
 
     function keyDown(e) {
@@ -166,6 +177,7 @@
   </script>
 </body>
 </html>
+
 
 
 
