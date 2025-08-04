@@ -5,21 +5,26 @@
   <title>Juego Snake 🐍</title>
   <style>
     body {
-      margin: 0;
-      background-color: #111;
-      color: white;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  margin: 0;
+  background-image: url('https://cdn.wallpapersafari.com/82/49/O4KHm2.gif');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
     }
 
     canvas {
-      background-color: #222;
-      margin-top: 30px;
-      border: 3px solid limegreen;
-      display: none; /* Oculto al inicio */
-    }
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 3px solid limegreen;
+  display: none;
+}
+
 
     h1 {
       margin-top: 20px;
@@ -36,10 +41,12 @@
       font-size: 1.6em;
     }
 
-    .welcome p {
-      font-size: 1.1em;
-      margin: 10px 0 20px;
-    }
+    .welcome {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+}
+
 
     .welcome button {
       padding: 10px 25px;
@@ -65,13 +72,13 @@
     <button onclick="iniciarJuego()">JUGAR</button>
   </div>
 
-  <canvas id="game" width="500" height="500"></canvas>
+  <canvas id="game" width="600" height="600"></canvas>
 
   <script>
     const canvas = document.getElementById("game");
     const ctx = canvas.getContext("2d");
 
-    const gridSize = 20;
+    const gridSize = 30;
     const tileCount = canvas.width / gridSize;
 
     let snake = [{ x: 10, y: 10 }];
@@ -150,4 +157,5 @@
   </script>
 </body>
 </html>
+
 
